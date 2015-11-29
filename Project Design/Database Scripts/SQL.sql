@@ -1,126 +1,107 @@
 CREATE SCHEMA `music_store` ;
 
 
-CREATE TABLE `music_store`.`music_detail` (
-  `music_id` VARCHAR(10) NOT NULL COMMENT '',
-  `music_name` VARCHAR(45) NOT NULL COMMENT '',
-  `artist_id` VARCHAR(10) NOT NULL COMMENT '',
-  `length` INT NOT NULL COMMENT '',
-  `price` DOUBLE NOT NULL COMMENT '',
-  `description` VARCHAR(200) NOT NULL COMMENT '',
-  `date` DATETIME NOT NULL COMMENT '',
-  PRIMARY KEY (`music_id`)  COMMENT '');
-  
-
-CREATE TABLE `music_store`.`album` (
+CREATE TABLE `music_store`.`carts` (
+  `record_id` VARCHAR(10) NOT NULL COMMENT '',
+  `cart_id` VARCHAR(10) NOT NULL COMMENT '',
   `album_id` VARCHAR(10) NOT NULL COMMENT '',
-  `album_name` VARCHAR(45) NOT NULL COMMENT '',
-  `artist_id` VARCHAR(10) NOT NULL COMMENT '',
-  `num_of_music` INT NOT NULL COMMENT '',
-  `price` DOUBLE NOT NULL COMMENT '',
-  PRIMARY KEY (`album_id`)  COMMENT '');
-  
-
-ALTER TABLE `music_store`.`music_detail` 
-ADD COLUMN `album_id` VARCHAR(10) NOT NULL COMMENT '' AFTER `date`,
-ADD INDEX `album_id_idx` (`album_id` ASC)  COMMENT '';
-ALTER TABLE `music_store`.`music_detail` 
-ADD CONSTRAINT `album_id`
-  FOREIGN KEY (`album_id`)
-  REFERENCES `music_store`.`album` (`album_id`)
-  ON DELETE NO ACTION
-  ON UPDATE NO ACTION;
-  
-
-CREATE TABLE `music_store`.`artist` (
-  `artist_id` VARCHAR(10) NOT NULL COMMENT '',
-  `artist_name` VARCHAR(45) NOT NULL COMMENT '',
-  `age` INT NOT NULL COMMENT '',
-  `note` VARCHAR(45) NULL COMMENT '',
-  PRIMARY KEY (`artist_id`)  COMMENT '');
-  
-  
-  ALTER TABLE `music_store`.`music_detail` 
-ADD INDEX `artist_id_idx` (`artist_id` ASC)  COMMENT '';
-ALTER TABLE `music_store`.`music_detail` 
-ADD CONSTRAINT `artist_id`
-  FOREIGN KEY (`artist_id`)
-  REFERENCES `music_store`.`artist` (`artist_id`)
-  ON DELETE NO ACTION
-  ON UPDATE NO ACTION;
+  `count` INT NOT NULL COMMENT '',
+  `date_created` DATE NOT NULL COMMENT '',
+  PRIMARY KEY (`record_id`)  COMMENT '');
 
 
-ALTER TABLE `music_store`.`album` 
-ADD CONSTRAINT `artist_id2`
-  FOREIGN KEY (`artist_id`)
-  REFERENCES `music_store`.`artist` (`artist_id`)
-  ON DELETE NO ACTION
-  ON UPDATE NO ACTION;
-
-
-ALTER TABLE `music_store`.`music_detail` 
-CHANGE COLUMN `album_id` `album_id` VARCHAR(10) NOT NULL COMMENT '' AFTER `length`,
-CHANGE COLUMN `description` `description` VARCHAR(200) NULL COMMENT '' ,
-ADD COLUMN `music_type` VARCHAR(45) NOT NULL COMMENT '' AFTER `date`;
-
-
-ALTER TABLE `music_store`.`music_detail` 
-CHANGE COLUMN `music_type` `music_type` VARCHAR(45) NOT NULL COMMENT '' AFTER `album_id`;
-
-
-CREATE TABLE `music_store`.`order` (
+CREATE TABLE `music_store`.`order_details` (
+  `order_detail_id` VARCHAR(10) NOT NULL COMMENT '',
   `order_id` VARCHAR(10) NOT NULL COMMENT '',
-  `customer_id` VARCHAR(45) NOT NULL COMMENT '',
-  `num_of_music` INT NOT NULL COMMENT '',
-  `note` VARCHAR(45) NULL COMMENT '',
+  `album_id` VARCHAR(10) NOT NULL COMMENT '',
+  `quantity` INT NOT NULL COMMENT '',
+  `unit_price` DOUBLE NOT NULL COMMENT '',
+  PRIMARY KEY (`order_detail_id`)  COMMENT '');
+
+
+CREATE TABLE `music_store`.`orders` (
+  `order_id` VARCHAR(10) NOT NULL COMMENT '',
+  `order_date` DATE NOT NULL COMMENT '',
+  `username` VARCHAR(45) NOT NULL COMMENT '',
+  `first_name` VARCHAR(45) NOT NULL COMMENT '',
+  `last_name` VARCHAR(45) NOT NULL COMMENT '',
+  `address` VARCHAR(45) NOT NULL COMMENT '',
+  `city` VARCHAR(45) NOT NULL COMMENT '',
+  `state` VARCHAR(45) NOT NULL COMMENT '',
+  `postal_code` VARCHAR(45) NOT NULL COMMENT '',
+  `country` VARCHAR(45) NOT NULL COMMENT '',
+  `phone` VARCHAR(45) NOT NULL COMMENT '',
+  `email` VARCHAR(45) NOT NULL COMMENT '',
+  `total` VARCHAR(45) NOT NULL COMMENT '',
   PRIMARY KEY (`order_id`)  COMMENT '');
 
 
-CREATE TABLE `music_store`.`customer` (
-  `customer_id` VARCHAR(10) NOT NULL COMMENT '',
-  `customer_name` VARCHAR(45) NOT NULL COMMENT '',
-  `age` INT NOT NULL COMMENT '',
-  `address` VARCHAR(45) NOT NULL COMMENT '',
-  `phone` VARCHAR(45) NOT NULL COMMENT '',
-  `email` VARCHAR(45) NOT NULL COMMENT '',
-  PRIMARY KEY (`customer_id`)  COMMENT '');
+CREATE TABLE `music_store`.`albums` (
+  `album_id` VARCHAR(10) NOT NULL COMMENT '',
+  `genre_id` VARCHAR(10) NOT NULL COMMENT '',
+  `artist_id` VARCHAR(10) NOT NULL COMMENT '',
+  `title` VARCHAR(45) NOT NULL COMMENT '',
+  `price` DOUBLE NOT NULL COMMENT '',
+  `album_art_url` VARCHAR(100) NULL COMMENT '',
+  PRIMARY KEY (`album_id`)  COMMENT '');
 
 
-ALTER TABLE `music_store`.`order` 
-ADD INDEX `customer_id_idx` (`customer_id` ASC)  COMMENT '';
-ALTER TABLE `music_store`.`order` 
-ADD CONSTRAINT `customer_id`
-  FOREIGN KEY (`customer_id`)
-  REFERENCES `music_store`.`customer` (`customer_id`)
+CREATE TABLE `music_store`.`artists` (
+  `artist_id` VARCHAR(10) NOT NULL COMMENT '',
+  `name` VARCHAR(45) NOT NULL COMMENT '',
+  PRIMARY KEY (`artist_id`)  COMMENT '');
+
+
+CREATE TABLE `music_store`.`genres` (
+  `genre_id` VARCHAR(10) NOT NULL COMMENT '',
+  `name` VARCHAR(45) NOT NULL COMMENT '',
+  `description` VARCHAR(45) NULL COMMENT '',
+  PRIMARY KEY (`genre_id`)  COMMENT '');
+
+
+ALTER TABLE `music_store`.`albums` 
+ADD INDEX `artist_id_idx` (`artist_id` ASC)  COMMENT '',
+ADD INDEX `genre_id_idx` (`genre_id` ASC)  COMMENT '';
+ALTER TABLE `music_store`.`albums` 
+ADD CONSTRAINT `artist_id`
+  FOREIGN KEY (`artist_id`)
+  REFERENCES `music_store`.`artists` (`artist_id`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION,
+ADD CONSTRAINT `genre_id`
+  FOREIGN KEY (`genre_id`)
+  REFERENCES `music_store`.`genres` (`genre_id`)
   ON DELETE NO ACTION
   ON UPDATE NO ACTION;
 
 
-CREATE TABLE `music_store`.`order_detail` (
-  `order_detail_id` VARCHAR(10) NOT NULL COMMENT '',
-  `order_id` VARCHAR(10) NOT NULL COMMENT '',
-  `music_id` VARCHAR(10) NOT NULL COMMENT '',
-  `quantity` INT NOT NULL COMMENT '',
-  PRIMARY KEY (`order_detail_id`)  COMMENT '',
-  INDEX `music_id2_idx` (`music_id` ASC)  COMMENT '',
-  INDEX `order_id_idx` (`order_id` ASC)  COMMENT '',
-  CONSTRAINT `music_id2`
-    FOREIGN KEY (`music_id`)
-    REFERENCES `music_store`.`music_detail` (`music_id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `order_id`
-    FOREIGN KEY (`order_id`)
-    REFERENCES `music_store`.`order` (`order_id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION);
+ALTER TABLE `music_store`.`carts` 
+ADD INDEX `album_id_idx` (`album_id` ASC)  COMMENT '';
+ALTER TABLE `music_store`.`carts` 
+ADD CONSTRAINT `album_id`
+  FOREIGN KEY (`album_id`)
+  REFERENCES `music_store`.`albums` (`album_id`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION;
 
 
-ALTER TABLE `music_store`.`customer` 
-ADD COLUMN `card_number` VARCHAR(45) NOT NULL COMMENT '' AFTER `email`;
+ALTER TABLE `music_store`.`order_details` 
+ADD INDEX `album_id2_idx` (`album_id` ASC)  COMMENT '';
+ALTER TABLE `music_store`.`order_details` 
+ADD CONSTRAINT `album_id2`
+  FOREIGN KEY (`album_id`)
+  REFERENCES `music_store`.`albums` (`album_id`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION;
 
 
-ALTER TABLE `music_store`.`order_detail` 
-ADD COLUMN `total_amount` DOUBLE NOT NULL COMMENT '' AFTER `quantity`;
+ALTER TABLE `music_store`.`order_details` 
+ADD INDEX `order_id_idx` (`order_id` ASC)  COMMENT '';
+ALTER TABLE `music_store`.`order_details` 
+ADD CONSTRAINT `order_id`
+  FOREIGN KEY (`order_id`)
+  REFERENCES `music_store`.`orders` (`order_id`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION;
 
 
