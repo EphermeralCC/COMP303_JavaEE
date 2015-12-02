@@ -2,7 +2,6 @@
     <wb-module deploy-name="MediaStoreGroupProj">
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
-        <wb-resource deploy-path="/WEB-INF/classes" source-path="/com.mediastore.project"/>
         <property name="context-root" value="MediaStoreGroupProj"/>
         <property name="java-output-path" value="/MediaStoreGroupProj/build/classes"/>
     </wb-module>
