@@ -1,0 +1,23 @@
+
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Homepage - Golden Media Store</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="CSS/style.css" rel="stylesheet" type="text/css">
+    </head>
+    <body>
+        <!--
+        wrapper for the whole page
+        -->
+        <div id="wrapper">
+            <div id="header">
+                <div id="headerUser"> Not logged in</div>
+                <div><a href="AdminController?name=login" style="text-decoration: none">Administrator Login</a></div>
+                <div id="logo">Golden Media Store</div>
+                <br>
+                <div id="staticHome">HOME</div>
+            </div>
