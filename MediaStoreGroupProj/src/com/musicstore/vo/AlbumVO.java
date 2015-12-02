@@ -1,7 +1,7 @@
 package com.musicstore.vo;
 
 public class AlbumVO {
-	
+
 	public AlbumVO() {
 	}
 
