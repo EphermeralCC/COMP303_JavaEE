@@ -1,8 +1,8 @@
 package com.musicstore.vo;
 
-public class AlbumVO {
+public class Album {
 
-	public AlbumVO() {
+	public Album() {
 	}
 
 	private String albumID;

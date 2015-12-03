@@ -1,7 +1,7 @@
 package com.musicstore.vo;
 
-public class ArtistVO {
-	public ArtistVO() {
+public class Artist {
+	public Artist() {
 	}
 
 	private String artistID;
