@@ -4,14 +4,14 @@ public class Artist {
 	public Artist() {
 	}
 
-	private String artistID;
+	private int artistID;
 	private String name;
 
-	public String getArtistID() {
+	public int getArtistID() {
 		return artistID;
 	}
 
-	public void setArtistID(String artistID) {
+	public void setArtistID(int artistID) {
 		this.artistID = artistID;
 	}
 
@@ -22,4 +22,5 @@ public class Artist {
 	public void setName(String name) {
 		this.name = name;
 	}
+
 }

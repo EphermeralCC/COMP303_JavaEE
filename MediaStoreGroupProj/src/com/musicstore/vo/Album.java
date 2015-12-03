@@ -5,34 +5,34 @@ public class Album {
 	public Album() {
 	}
 
-	private String albumID;
-	private String genresID;
-	private String artistID;
+	private int albumID;
+	private int genresID;
+	private int artistID;
 	private String title;
 	private double price;
 	private String albumArtUrl;
 
-	public String getAlbumID() {
+	public int getAlbumID() {
 		return albumID;
 	}
 
-	public void setAlbumID(String albumID) {
+	public void setAlbumID(int albumID) {
 		this.albumID = albumID;
 	}
 
-	public String getGenresID() {
+	public int getGenresID() {
 		return genresID;
 	}
 
-	public void setGenresID(String genresID) {
+	public void setGenresID(int genresID) {
 		this.genresID = genresID;
 	}
 
-	public String getArtistID() {
+	public int getArtistID() {
 		return artistID;
 	}
 
-	public void setArtistID(String artistID) {
+	public void setArtistID(int artistID) {
 		this.artistID = artistID;
 	}
 
