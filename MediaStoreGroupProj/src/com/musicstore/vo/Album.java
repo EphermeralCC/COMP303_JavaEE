@@ -10,7 +10,7 @@ public class Album {
 	private int albumID;
 	private int genreID;
 	private int artistID;
-	private List<Artist> artists;
+	private String artist;
 	private String title;
 	private double price;
 	private String albumArtUrl;
@@ -64,12 +64,12 @@ public class Album {
 		this.albumArtUrl = albumArtUrl;
 	}
 
-	public List<Artist> getArtists() {
-		return artists;
+	public String getArtist() {
+		return artist;
 	}
 
-	public void setArtists(List<Artist> artists) {
-		this.artists = artists;
+	public void setArtist(String artist) {
+		this.artist = artist;
 	}
 
 	public String getGenre() {
