@@ -16,7 +16,7 @@
                 <div id="headerUser"> Please log in</div>
                 <div><a href="LoginController?name=login" style="text-decoration: none">Login</a></div>
                 <div id="title">Golden Media Store</div>
-                <a href="IndexHome.jsp">
+                <a href="#">
         		<img src="music.jpg" id="logo" alt="Golden Media Store">
     			</a>
                 <br>

@@ -39,7 +39,6 @@
                                     </tr>
                             </c:forEach>
                           
-                            <!--use JSTL to create table data-->
                         </table>
                     </form>
                     <br>

@@ -2,7 +2,7 @@
 <div id="midSection">
     <div id="sideNav">
         <div id="sideLinks">
-            <a class="sideHome" href="IndexHome.jsp">Home</a>
+            <a class="sideHome" href="indexHome.jsp">Home</a>
             <br>
             <br>
             -------------------------
