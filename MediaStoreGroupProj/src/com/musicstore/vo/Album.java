@@ -1,16 +1,20 @@
 package com.musicstore.vo;
 
+import java.util.List;
+
 public class Album {
 
 	public Album() {
 	}
 
 	private int albumID;
-	private int genresID;
+	private int genreID;
 	private int artistID;
+	private List<Artist> artists;
 	private String title;
 	private double price;
 	private String albumArtUrl;
+	private String genre;
 
 	public int getAlbumID() {
 		return albumID;
@@ -21,11 +25,11 @@ public class Album {
 	}
 
 	public int getGenresID() {
-		return genresID;
+		return genreID;
 	}
 
-	public void setGenresID(int genresID) {
-		this.genresID = genresID;
+	public void setGenresID(int genreID) {
+		this.genreID = genreID;
 	}
 
 	public int getArtistID() {
@@ -58,6 +62,22 @@ public class Album {
 
 	public void setAlbumArtUrl(String albumArtUrl) {
 		this.albumArtUrl = albumArtUrl;
+	}
+
+	public List<Artist> getArtists() {
+		return artists;
+	}
+
+	public void setArtists(List<Artist> artists) {
+		this.artists = artists;
+	}
+
+	public String getGenre() {
+		return genre;
+	}
+
+	public void setGenre(String genre) {
+		this.genre = genre;
 	}
 
 }
