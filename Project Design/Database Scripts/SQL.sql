@@ -44,7 +44,7 @@ CREATE TABLE Orders(
  );
  
  
- INSERT INTO Artists (ArtistId, Name) VALUES (1, 'AC/DC');
+INSERT INTO Artists (ArtistId, Name) VALUES (1, 'AC/DC');
 INSERT INTO Artists (ArtistId, Name) VALUES (2, 'Accept');
 INSERT INTO Artists (ArtistId, Name) VALUES (3, 'Aerosmith');
 INSERT INTO Artists (ArtistId, Name) VALUES (4, 'Alanis Morissette');
