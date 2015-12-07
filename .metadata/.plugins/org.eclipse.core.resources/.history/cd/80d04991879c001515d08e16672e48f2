@@ -1,0 +1,99 @@
+package musicstore;
+
+import java.util.List;
+
+import javax.persistence.EntityManager;
+
+import database.DatabaseUtil;
+
+public class Album {
+	private int albumID;
+	private int genreID;
+	private int artistID;
+	private String artist;
+	private String title;
+	private double price;
+	private String albumArtUrl;
+	
+	public Album() {
+	}
+	
+	public Album(int albumID, int genreID, int artistID, String artist, String title, double price, String albumArtUrl){
+	
+		this.albumID = albumID;
+		this.genreID = genreID;
+		this.artistID = artistID;
+		this.artist = artist;
+		this.title = title;
+		this.price = price;
+		this.albumArtUrl = albumArtUrl;
+	}
+
+	public int getAlbumID() {
+		return albumID;
+	}
+
+	public void setAlbumID(int albumID) {
+		this.albumID = albumID;
+	}
+
+	public int getGenresID() {
+		return genreID;
+	}
+
+	public void setGenresID(int genreID) {
+		this.genreID = genreID;
+	}
+
+	public int getArtistID() {
+		return artistID;
+	}
+
+	public void setArtistID(int artistID) {
+		this.artistID = artistID;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+//	public void setTitle(String title) {
+//		this.title = title;
+//	}
+
+	public double getPrice() {
+		return price;
+	}
+
+	public void setPrice(double price) {
+		this.price = price;
+	}
+
+	public String getAlbumArtUrl() {
+		return albumArtUrl;
+	}
+
+	public void setAlbumArtUrl(String albumArtUrl) {
+		this.albumArtUrl = albumArtUrl;
+	}
+
+	public String getArtist() {
+		return artist;
+	}
+
+	public void setArtist(String artist) {
+		this.artist = artist;
+	}
+	public Album setTitle(String Title)
+	{
+	    EntityManager em = DatabaseUtil.getEmFactory().createEntityManager();
+	    try {
+	    	Album p = new Album();
+	        p = em.find(Album.class,Title);
+	        return p;
+	    }finally{
+	        em.close();
+	    }
+	}
+
+}

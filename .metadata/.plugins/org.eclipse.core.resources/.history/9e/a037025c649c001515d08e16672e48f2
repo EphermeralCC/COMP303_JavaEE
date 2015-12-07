@@ -1,0 +1,124 @@
+package controller;
+
+import musicstore.Album;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+
+
+/**
+ * Servlet implementation class AlbumController
+ */
+@WebServlet("/AlbumController")
+public class AlbumController extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public AlbumController() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		
+		response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            String url = "/item.jsp";
+            String pCode = request.getParameter("name");
+            String query = "SELECT * FROM PRODUCT WHERE productCode='" + pCode + "'";
+            
+            /**
+             * Creates a connection to the database
+             */
+            try{
+                Class.forName("com.mysql.jdbc.Driver");
+            } catch (Exception ex) {
+                out.println("No connection");
+            }
+            
+            Connection conn = null;
+             try {
+                 conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/productdb", "newuser", "password");
+             } catch(SQLException ex) {
+                 out.println("SQLException: " + ex.getMessage());
+                 out.println("SQLState: " + ex.getSQLState());
+             }
+            
+            Statement stmt = null;
+            ResultSet rs = null;
+            
+            try {
+                stmt = conn.createStatement();
+                rs = stmt.executeQuery(query);
+                
+                if(stmt.execute(query))
+                    rs = stmt.getResultSet();
+            } catch (SQLException ex) {
+                out.println("SQLException: " + ex.getMessage());
+            }
+            
+            /**
+             * Creates object and stores info from the database depending on the pCode
+             */
+            Album itemInfo = new Album();
+            
+            while(rs.next())
+            {	
+                itemInfo.setAlbumID(rs.getInt(1));
+                itemInfo.setGenresID(rs.getInt(1));
+                itemInfo.setArtistID(rs.getInt(1));
+                itemInfo.setArtist(rs.getString(2));
+                itemInfo.setTitle(rs.getString(3));
+                itemInfo.setPrice(rs.getDouble(5));
+                itemInfo.setAlbumArtUrl(rs.getString(6));
+                itemInfo.setGenre(rs.getString(6));
+            }
+
+            /**
+             * set attributes for the page view
+             */
+            request.setAttribute("pCode", itemInfo.getProductCode());
+            request.setAttribute("imageURL", itemInfo.getImageUrl());
+            request.setAttribute("productName", itemInfo.getProductName());
+            request.setAttribute("catalogCatagory", itemInfo.getCatalogCatagory());
+            request.setAttribute("price", itemInfo.getPrice());
+            request.setAttribute("description", itemInfo.getDescription());
+
+           
+            getServletContext()
+                    .getRequestDispatcher(url)
+                    .forward(request, response);
+            
+        }
+		
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
+	}
+
+}
