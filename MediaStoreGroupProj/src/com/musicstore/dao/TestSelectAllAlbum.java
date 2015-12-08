@@ -4,10 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.musicstore.vo.Album;
-import com.musicstore.vo.Artist;
-import com.musicstore.vo.Genre;
 
-public class TestRun {
+public class TestSelectAllAlbum {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
