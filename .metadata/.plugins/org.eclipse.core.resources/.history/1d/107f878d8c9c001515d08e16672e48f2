@@ -1,0 +1,32 @@
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.Statement"%>
+<%@page import="java.sql.Connection"%>
+<%@page import="database.DB_Conn"%>
+
+<%@ page contentType="text/html" pageEncoding="UTF-8"%>
+<%@include file = "headerHome.jsp" %>
+<%@include file="user-navigation.jsp" %>
+<%@include file="site-navigation.jsp" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<body>
+<div>
+<div id="catalogWrapper">
+<h1>Albums</h1>
+<ul>
+<li><a href="AlbumController?AlbumId=2" style="text-decoration: none">Let There be Rock</a></li>
+<li><a href="AlbumController?AlbumId=3" style="text-decoration: none">Greatest Hits</a></li>
+<li><a href="AlbumController?AlbumId=4" style="text-decoration: none">Misplaced Childhood</a></li>
+<li><a href="AlbumController?AlbumId=5" style="text-decoration: none">The Best Of Men At Work</a></li>
+<li><a href="AlbumController?AlbumId=6" style="text-decoration: none">Nevermind</a></li>
+<li><a href="AlbumController?AlbumId=7" style="text-decoration: none">Compositores</a></li>
+<li><a href="AlbumController?AlbumId=8" style="text-decoration: none">Bark at the Moon</a></li>
+<li><a href="AlbumController?AlbumId=9" style="text-decoration: none">Blizzard of Ozz</a></li>
+<li><a href="AlbumController?AlbumId=10" style="text-decoration: none">Diary Of A Madman</a></li>
+</ul>
+</div>
+</div>
+<%@include file="footerHome.jsp" %>
+</div>
+</body>
+</html>
